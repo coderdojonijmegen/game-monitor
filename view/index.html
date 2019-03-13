@@ -1,0 +1,40 @@
+<html>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.dev.js"></script>
+<script type="text/javascript" src="../js/SVG.js"></script>
+<script type="text/javascript" src="../js/victor.min.js"></script>
+<script type="text/javascript" src="../js/viewport.js"></script>
+<script type="text/javascript" src="../js/mock-api.js"></script>
+<script type="text/javascript" src="../js/api.js"></script>
+<script type="text/javascript" src="../js/game.js"></script>
+<script type="text/javascript" src="../js/player.js"></script>
+
+<head>
+  <title>SVG.js</title>
+</head>
+
+<body>
+  <div class="header"></div>
+  <div class="header-overlay">
+    <div class="item tagger">
+      Tagged: Player1
+    </div>
+    <span class="item" id="name">
+      Username: Spectator
+    </span>
+  </div>
+  <div id="drawing"></div>
+  <div class="move-button" id="left"></div>
+  <div class="move-button" id="right"></div>
+  <div class="move-button" id="up"></div>
+  <div class="move-button" id="down"></div>
+</body>
+
+</html>
+<script>
+  let api = new API();
+  let game = new Game(api);
+  setInterval(function () { game.update(); game.draw() }, 10);
+</script>
