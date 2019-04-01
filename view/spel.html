@@ -3,8 +3,7 @@
   crossorigin="anonymous"></script>
 <link rel="stylesheet" type="text/css" href="../css/style.css">
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.dev.js"></script>
-<script type="text/javascript" src="../js/SVG.js"></script>
-<script type="text/javascript" src="../js/victor.min.js"></script>
+<script type="text/javascript" src="../js/config.js"></script>
 <script type="text/javascript" src="../js/viewport.js"></script>
 <script type="text/javascript" src="../js/mock-api.js"></script>
 <script type="text/javascript" src="../js/api.js"></script>
@@ -18,23 +17,20 @@
 <body>
   <div class="header"></div>
   <div class="header-overlay">
-    <div class="item tagger">
-      Tagged: Player1
+    <div class="item tagger" id="tagger">
+      Tikker: onbekend
     </div>
     <span class="item" id="name">
-      Username: Spectator
+      Gebruikersnaam: onbekend
     </span>
   </div>
   <div id="drawing"></div>
-  <div class="move-button" id="left"></div>
-  <div class="move-button" id="right"></div>
-  <div class="move-button" id="up"></div>
-  <div class="move-button" id="down"></div>
 </body>
 
 </html>
 <script>
   let api = new API();
   let game = new Game(api);
-  setInterval(function () { game.update(); game.draw() }, 10);
+  setInterval(function () { game.update() }, 10);
 </script>
+<script type="text/javascript" src="../js/ninja.js"></script>

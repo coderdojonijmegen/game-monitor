@@ -4,7 +4,9 @@ body {
     padding-top: 100px !important;
 }
 
-
+#drawing {
+    position: relative;
+}
 
 .item {
     width: 200px;
@@ -17,6 +19,14 @@ body {
 .tagger {
     flex: 1;
     margin-left: 20px;
+}
+
+#color {
+    width: 20px;
+    height: 20px;
+    background-color: rebeccapurple;
+    float: left;
+    margin-right: 10px;
 }
 
 .header-overlay {
@@ -47,7 +57,7 @@ body {
 
 .move-button:hover {
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-  }
+}
 
 #left {
     position: absolute;
@@ -55,21 +65,35 @@ body {
     right: 155px;
     background-image: url('../img/left.png');
 }
+
 #right {
     position: absolute;
     bottom: 100px;
     right: 45px;
     background-image: url('../img/right.png');
 }
+
 #up {
     position: absolute;
     bottom: 155px;
     right: 100px;
     background-image: url('../img/up.png');
 }
+
 #down {
     position: absolute;
     bottom: 45px;
     right: 100px;
     background-image: url('../img/down.png');
+}
+
+.player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    z-index: -2;
 }

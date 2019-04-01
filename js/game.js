@@ -5,46 +5,32 @@ class Game {
         this.width = $(window).width();
         this.height = $(window).height();
 
-        this.canvas = SVG('drawing').size($(window).width(), $(window).height()-200)
-
         this.players = [
-            new Player("21321", this.canvas, 10, 10, "Player_1"),
-            //   new Player("bdqwdqw", this.canvas, 200, 10, "Player_2"),
+            new Player("21321", 10, 10, "Player_1"), //Add test player
         ]
-
-        this.viewport = new Viewport(this.width, this.height, 0, 0);
+        
+        //The viewport indicates how much of the current playing area the user can see. If the width is equal to the server the entire field is in view.
+        //Coordinates are mapped based on this size, the viewport can be moved to view other area's of the play area. 
+        this.viewport = new Viewport(5000, 5000, 0, 0);
     }
 
-    draw() {
-        this.players.forEach(player => {
-            player.Update();
-            player.Draw(this.viewport);
-        });
-    }
-
+    //Update existing players, and add new players.
     update() {
-     //   console.log("Updating")
         let newPlayers = this.api.fetchPlayers();
-
         newPlayers.forEach(player => {
             var current_player = this.players.find(p => {
                 return p.id == player.id;
             })
             if (current_player != null) {
-                current_player.posX = player.posX
-                current_player.dY = 0
+                current_player.Update(player, this.viewport)
             } else {
                 this.players.push(new Player(
                     player.id,
-                    this.canvas,
                     player.posX,
                     player.posY,
                     player.name,
                 ))
             }
         });
-
-
-
     }
 }

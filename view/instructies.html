@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Instructies voor ninja-tag spel</title>
+</head>
+</html>
+<body>
+    <h1>Ninja Tag</h1>
+    <p>Welkom bij Ninja Tag. Om te beginnen, open de index.html file in je chrome browser. Je ziet al dat je direct mee doet aan het spel! Als je in chrome op alt-ctrl-J drukt (of op macs op alt-cmd-J), dan wordt de javascript console geopend. Nu kun je aan de slag.</p>
+    <h2>Console commando's (voor de beginner)</h2>
+    <h3>Avatar</h3>
+    <p>In het spel bestuur je een 'avatar'. Je avatar is een vierkantje met een kleur of een plaatje, dat kan bewegen over het veld. Je bestuurt je avatar door commando's te typen in de console. Die commando's gaan we zo vertellen, maar je kan alvast wat informatie over je avatar zien door het woord in de console te typen:</p>
+    <code><span style="color:blue">&gt;</span> avatar</code>
+    <p>Druk daarna op enter en dan komt er informatie in beeld. Weet jij wat het allemaal betekent?</p>
+    <h3>Naam instellen</h3>
+    <p>Stel een naam in met de onderstaande commando, in het voorbeeld heet de speler Jantje.</p>
+    <code><span style="color:blue">&gt;</span> avatar.zet_naam(<span style="color:darkred">"Jantje"</span>)</code>
+    <p>Met dit commando heb je een bericht naar de server gestuurd dat je je naam wilt veranderen. Als de server je bericht begrepen heeft, zal het laten weten dat je naam is veranderd. Het kan zijn dat er meer spelers die naam gebruiken, dus dan zal er een getal achter je naam komen te staan. Om te zien of je naam is veranderd en waarin het is veranderd, type je:</p>
+    <code><span style="color:blue">&gt;</span> avatar.naam</code>
+    <h3>Bewegen</h3>
+    <p>Beweeg je avatar met bijvoorbeeld dit commando:</p>
+    <code><span style="color:blue">&gt;</span> avatar.ga_rechts()</code>
+    <p>Je bent nu naar rechts bewogen. Je kunt ook naar links, naar boven en naar onder. Kun jij ontdekken hoe?</p>
+    <h3>Grootte veranderen</h3>
+    <p>Je kan zelf veranderen hoe je avatar er uit ziet, bijvoorbeeld door het groter of kleiner te maken. Daarvoor heeft de avatar zogenaamde 'styles'. De namen zijn in het Engels: breedte is 'width', hoogte is 'height'. Als je de styles hebt ingesteld, stuur je ze naar de server met 'stuur_styles()'. Type bijvoorbeeld onderstaand:</p>
+    <code>
+        <span style="color:blue">&gt;</span> avatar.styles[<span style="color:darkred">"width"</span>] = <span style="color:darkred">"32px"</span><br>
+        <span style="color:blue">&gt;</span> avatar.styles[<span style="color:darkred">"height"</span>] = <span style="color:darkred">"48px"</span><br>
+        <span style="color:blue">&gt;</span> avatar.stuur_styles()
+    </code>
+    <p>Als het goed is, heeft je avatar nu een breedte van 32 pixels (px) en een hoogte van 48 pixels. Experimenteer met verschillende groottes, let op dat er een maximum en een minimum is. Hoe groot kun je worden?</p>
+    <h3>Kleuren en vormen</h3>
+    <p>Met dezelfde styles is het ook mogelijk om andere aanpassingen te doen aan hoe jouw avatar er uit ziet. Verander bijvoorbeeld met onderstaande   commando's de achtergrondkleur naar groen (green), rood (red) of blauw (blue), of iets heel anders. Kijk op <a href="https://www.w3schools.com/cssref/css_colors.asp">de w3schools website</a> voor een uitgebreide lijst met verschillende kleuren.</p>
+    <code>
+        <span style="color:blue">&gt;</span> avatar.styles[<span style="color:darkred">"background-color"</span>] = <span style="color:darkred">"green"</span><br>
+        <span style="color:blue">&gt;</span> avatar.stuur_styles()
+    </code>
+    <p>Behalve de achtergrondkleur, kun je ook een rand (border) toe voegen. Een rand heeft een dikte, in pixels, en een kleur. Een rand heeft ook een stijl, die je kan kiezen uit dit lijstje, probeer ze maar eens uit: dotted, dashed, solid, double, groove, ridge, inset, outset.</p>
+    <code>
+        <span style="color:blue">&gt;</span> avatar.styles[<span style="color:darkred">"border"</span>] = <span style="color:darkred">"2px dashed blue"</span><br>
+        <span style="color:blue">&gt;</span> avatar.stuur_styles()
+    </code>
+    <p>Je kunt ook de hoeken van je avatar aanpassen, door de zogenaamde 'radius' aan te passen:</p>
+    <code>
+        <span style="color:blue">&gt;</span> avatar.styles[<span style="color:darkred">"border-radius"</span>] = <span style="color:darkred">"5px"</span><br>
+        <span style="color:blue">&gt;</span> avatar.stuur_styles()
+    </code>
+    <p>Lukt het jou om je radius zo te krijgen, dat jouw avatar een cirkel wordt?</p>
+    <h3>Een nieuw plaatje</h3>
+    <p>TODO</p>
+    <h2>Javascript (voor gevorderden)</h2>
+    <p><i>Als je de console opdrachten nog niet hebt gedaan, doe die dan eerst.</i></p>
+    <h3>Functions</h3>
+    <p>Tot nu toe heb je in je console met &egrave;&egrave;n commando je avatar aangestuurd. Maar je kan ook je eigen commando's schrijven! Je kan bijvoorbeeld een commando schrijven die er voor zorgt dat jouw avatar schuin naar rechts-onder gaat. Om een commando te maken, schrijf je een function. Een function is een stukje code in een van de bestanden, die je vanuit de console kan aanroepen, zoals je tot nu toe ook al hebt gedaan.</p>
+    <p>Om te beginnen, open met een teksteditor in het mapje 'js' het bestand 'ninja.js'. Als je niet weet wat een teksteditor is, vraag dan hulp bij een mentor.<br>Dit bestand is nog helemaal leeg, want het is de bedoeling dat je daar zelf iets in gaat schrijven. Laten we een commando schrijven voor de avatar waarmee de avatar naar rechts-onder gaat:</p>
+    <code><pre>avatar.ga_rechtsonder = function() {
+    avatar.ga_rechts()
+    avatar.ga_onder()
+}</pre></code>
+    <p>De opdrachten die tussen de '{' en de '}' staan, zijn de stapjes die jouw commando zet. Je kan dus alle opdrachten die je in de console hebt gedaan, ook in je eigen commando's zetten.<br>Als je de pagina ververst, kun je in de console nu je nieuwe commando aanroepen:</p>
+    <code><span style="color:blue">&gt;</span> avatar.ga_rechtsonder()</code>
+    <p>Kun je ook een commando schrijven die naar links-boven gaat? En een commando die 5 stapjes naar rechts gaat?</p>
+</body>

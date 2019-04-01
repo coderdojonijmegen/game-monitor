@@ -1,11 +1,12 @@
 class API {
-
     constructor(canvas_) {
+        this.name = "";
         this.canvas = canvas_;
-        this.socket = io("ws://45.77.139.8:3000")
-
+        this.socket = io("ws://"+IP_ADRESS)
+        var self = this;
         this.socket.on('connection', function (socket) {
             console.log("Connnnnnnected")
+            
         });
 
         this.data = "";
@@ -14,46 +15,63 @@ class API {
 
         ]
 
-        // this.socket.on('get_name', function(data) { _this.setName(data) })
-        // this.socket.on('tag', function(data) { _this.showTaggerText(data) })
-        var self = this;
+        var self = this; //For working first first class functions
+
+        //Asynchronously update player information
         this.socket.on('get_players', (data) => {
             self.updatePlayers(data)
+            self.socket.emit('spectate')
         })
 
-        this.socket.on('get_name', function (data) { 
-            $("#name").text("Username: "+data)
-         })
-
-        $("#right").click(function () {
-            self.socket.emit('move_right')
+        this.socket.on('get_name', function (data) {
+            $("#name").text("Gebruikersnaam: " + data)
+            self.name = data;
         })
-
-        $("#left").click(function () {
-            self.socket.emit('move_left')
-        })
-
-        $("#up").click(function () {
-            self.socket.emit('move_up')
-        })
-
-        $("#down").click(function () {
-            self.socket.emit('move_down')
-        })
-        // this.socket.on('input_error', function(data) { _this.showInputError(data) })
-        // this.socket.on('tagger_monitor', function(data) { _this.showMonitor(data) })    
     }
 
-    updatePlayers(data) {
-        this.players = [];
+    move_up() {
+        this.socket.emit('move_up')
+    }
 
+    move_left() {
+        this.socket.emit('move_left')
+    }
+
+    move_right() {
+        this.socket.emit('move_right')
+    }
+
+    move_down() {
+        this.socket.emit('move_down')
+    }
+
+    send_styles(styles) {
+        this.socket.emit("send_styles", this.styles)
+    }
+
+    set_name(name) {
+        this.socket.emit("set_name", name)
+    }
+
+    //Asynchronously update player information
+    updatePlayers(data) {
+        
+        this.players = [];
         for (var i = 0; i < data.length; i++) {
             let p = data[i]
+            if(p.tagger) {
+                $("#tagger").text("Tikker: " + p.name)
+            }
             this.players.push({
                 id: p.id,
-                posX: p.position.x / 7,
-                posY: p.position.y / 7,
-                name: p.name
+                posX: p.position.x,
+                posY: p.position.y,
+                width: p.position.width,
+                height: p.position.height,
+                name: p.name,
+                tagger: p.tagger,
+                styles: p.styles,
+                is_self: p.is_self
             })
         }
     }
@@ -62,10 +80,8 @@ class API {
         // this.players = data;
     }
 
+    //Simply returns the list of all players with up to date information.
     fetchPlayers() {
-        //This is temporary
-        //   /  this.socket.emit('move_right')
-
         return this.players;
     }
 }
