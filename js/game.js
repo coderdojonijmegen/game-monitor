@@ -32,5 +32,18 @@ class Game {
                 ))
             }
         });
+
+        let self = this;
+        let index = 0;
+        this.players.forEach(player => {
+            var current_player = newPlayers.find(p => {
+                return p.id == player.id;
+            })
+            if (current_player == null) {
+                $("#"+player.id).remove();
+                self.players.splice(index, 1);
+            }
+            index++;
+        });
     }
 }

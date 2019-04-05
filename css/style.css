@@ -87,7 +87,12 @@ body {
     background-image: url('../img/down.png');
 }
 
+.tagger-player {
+    border: 3px solid yellow
+}
+
 .player {
+    transition: 0.1s linear;
     position: absolute;
     top: 0;
     left: 0;

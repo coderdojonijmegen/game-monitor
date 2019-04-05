@@ -28,12 +28,8 @@ class Player {
         }
 
         if(data.tagger) {
-            $("#"+self.id).css("border", "3px solid yellow");
-            $([document.documentElement, document.body]).animate({
-                scrollTop: $("#"+this.id).offset().top+400,
-            }, 2000);
-        } else if($("#"+self.id).css("border") == "3px solid yellow") {
-            $("#"+self.id).css("border", "none");
+            $("div").removeClass("tagger-player");
+            $("#"+self.id).addClass("tagger-player");
         }
 
         if(!data.is_self) {
